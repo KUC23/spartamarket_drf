@@ -1,0 +1,24 @@
+로그아웃 실패  오류
+
+refresh 토큰을 블랙리스트에 넣음으로써 로그아웃기능을 구현
+
+# refresh 토큰을 블랙리스트에 넣었음에도 로그아웃 실패 출력
+
+
+이유 출력
+Response({"error": f"로그아웃 실패: {str(e)}"}, # 로그아웃 실패 이유 출력
+
+이유
+"error": "로그아웃 실패: 'RefreshToken' object has no attribute 'blacklist'"
+
+해결
+INSTALLED_APPS = [
+'rest_framework_simplejwt.token_blacklist',  # 블랙리스트 앱 추가
+
+python manage.py makemigrations
+python manage.py migrate
+
+블랙리스트 기능 활성화가 되지 않아 생긴 문제 였던 걸로 추정
+
+--------------------------------------------------------------------
+
